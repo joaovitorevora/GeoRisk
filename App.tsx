@@ -97,7 +97,6 @@ function AppContent() {
         (response) => {
           setLocation(response);
 
-          // Atualiza a câmera dependendo do modo Waze
           mapRef.current?.animateCamera({
             center: response.coords,
             pitch: modoWaze ? 75 : 0,
@@ -105,7 +104,6 @@ function AppContent() {
             zoom: modoWaze ? 18 : 16,
           });
 
-          // Notificações de zona de risco
           zonasDeRisco
             .filter((zona) =>
               !tipoSelecionado || zona.tipo.toLowerCase() === tipoSelecionado.toLowerCase()
@@ -139,24 +137,41 @@ function AppContent() {
     };
   }, [tipoSelecionado, modoWaze]);
 
-
-  const alternarModoVisualizacao = () => {
-    setModoWaze((prev) => !prev);
-  };
-
-  const alternarModoNoturno = () => {
-    setModoNoturno((prev) => !prev);
-  };
+  useEffect(() => {
+    if (location?.coords && mapRef.current) {
+      mapRef.current.animateCamera({
+        center: {
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+        },
+        pitch: modoWaze ? 75 : 0,
+        heading: modoWaze ? location.coords.heading ?? 0 : 0,
+        zoom: modoWaze ? 18 : 16,
+      });
+    }
+  }, [modoWaze]);
 
   return (
     <View style={styles.container}>
       {location?.coords && (
         <>
           <PlacesAutocomplete
-            onPlaceSelected={(coords) => {
-              setDestination(coords);
+            onPlaceSelected={(coords) => setDestination(coords)}
+            onClearDestination={() => setDestination(null)}
+            hasDestination={!!destination}
+            recenterMap={() => {
+              if (location?.coords) {
+                mapRef.current?.animateCamera({
+                  center: {
+                    latitude: location.coords.latitude,
+                    longitude: location.coords.longitude,
+                  },
+                  zoom: 16,
+                });
+              }
             }}
           />
+
 
           <MapView
             ref={mapRef}
@@ -188,9 +203,11 @@ function AppContent() {
                   strokeColor="blue"
                   mode="DRIVING"
                   onReady={(result) => {
-                    mapRef.current?.fitToCoordinates(result.coordinates, {
-                      edgePadding: { top: 50, bottom: 50, left: 50, right: 50 },
-                    });
+                    if (!modoWaze) {
+                      mapRef.current?.fitToCoordinates(result.coordinates, {
+                        edgePadding: { top: 50, bottom: 50, left: 50, right: 50 },
+                      });
+                    }
                   }}
                   onError={(err) => {
                     console.warn("Erro ao calcular rota:", err);
@@ -214,7 +231,7 @@ function AppContent() {
               ))}
           </MapView>
 
-          {/* Botões flutuantes */}
+          {/* Filtros e botões */}
           <View style={{ position: 'absolute', bottom: 20, left: 20, zIndex: 10 }}>
             <Menu
               visible={menuVisible}
@@ -238,24 +255,22 @@ function AppContent() {
             </Menu>
           </View>
 
-          {/* Botão modo Waze / tradicional */}
           <View style={{ position: 'absolute', bottom: 20, right: 80, zIndex: 10 }}>
             <IconButton
               icon={modoWaze ? 'satellite-variant' : 'car'}
               size={28}
-              onPress={alternarModoVisualizacao}
+              onPress={() => setModoWaze((prev) => !prev)}
               mode="contained"
               style={{ backgroundColor: '#6200ee' }}
               iconColor="#fff"
             />
           </View>
 
-          {/* Botão modo noturno */}
           <View style={{ position: 'absolute', bottom: 20, right: 20, zIndex: 10 }}>
             <IconButton
               icon={modoNoturno ? 'weather-night' : 'white-balance-sunny'}
               size={28}
-              onPress={alternarModoNoturno}
+              onPress={() => setModoNoturno((prev) => !prev)}
               mode="contained"
               style={{ backgroundColor: '#6200ee' }}
               iconColor="#fff"
