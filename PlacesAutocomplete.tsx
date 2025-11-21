@@ -30,7 +30,7 @@ export default function PlacesAutocomplete({
 }: Props) {
   const [query, setQuery] = useState('');
   const [predictions, setPredictions] = useState<Prediction[]>([]);
-  const debounceRef = useRef<number | null>(null);
+  const debounceRef = useRef<NodeJS.Timeout | null>(null);
 
   const fetchPlaces = async (text: string) => {
     setQuery(text);
