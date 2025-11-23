@@ -48,10 +48,6 @@ O sistema utiliza um algoritmo geométrico para analisar rotas sugeridas e alert
 -   [Firebase Firestore](https://firebase.google.com/) (Banco de Dados NoSQL em Tempo Real)
 -   [Firebase Authentication](https://firebase.google.com/docs/auth) (Login e Registro)
 
-### Data Science / Scraping
--   [Go (Golang)](https://go.dev/)
--   [GoQuery](https://github.com/PuerkitoBio/goquery) (Parser HTML)
-
 ---
 
 ## ⚙️ Pré-requisitos
@@ -67,3 +63,16 @@ Antes de começar, você precisará ter instalado em sua máquina:
 ### 1. Clonar o Repositório
 ```bash
 git clone [https://github.com/seu-usuario/georisk-tcc.git](https://github.com/seu-usuario/georisk-tcc.git)
+```
+### 2. Instalar depêndencias
+```bash
+npm install
+npm install firebase
+npm audit fix --force
+npx expo install expo-notifications
+npx expo prebuild
+```
+### 3. Rodar aplicação
+```bash
+npx expo run:android
+```
