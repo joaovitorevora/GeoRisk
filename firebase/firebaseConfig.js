@@ -8,7 +8,7 @@ import {
 } from '@env';
 
 
-// 1. As chaves agora são lidas do arquivo .env de forma segura
+// Chaves do arquivo .env de forma segura
 const firebaseConfig = {
   apiKey: API_KEY,
   authDomain: AUTH_DOMAIN,
@@ -19,10 +19,10 @@ const firebaseConfig = {
   measurementId: MEASUREMENT_ID
 };
 
-// 2. Inicialize o Firebase App
+// Inicializa o Firebase App
 const app = initializeApp(firebaseConfig);
 
-// 3. Inicialize o Firebase Auth com persistência
+// Inicializa o Firebase Auth com persistência
 const auth = initializeAuth(app, {
   persistence: getReactNativePersistence(ReactNativeAsyncStorage)
 });

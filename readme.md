@@ -40,7 +40,6 @@ O sistema utiliza um algoritmo geométrico para analisar rotas sugeridas e alert
 
 ### Front-end (Mobile)
 -   [React Native](https://reactnative.dev/) (Expo Framework)
--   [TypeScript](https://www.typescriptlang.org/)
 -   [React Native Maps](https://github.com/react-native-maps/react-native-maps) (Google Maps)
 -   [React Native Paper](https://callstack.github.io/react-native-paper/) (UI Library)
 -   [Expo Location](https://docs.expo.dev/versions/latest/sdk/location/) & [Notifications](https://docs.expo.dev/versions/latest/sdk/notifications/)
@@ -59,8 +58,7 @@ O sistema utiliza um algoritmo geométrico para analisar rotas sugeridas e alert
 
 Antes de começar, você precisará ter instalado em sua máquina:
 * [Node.js](https://nodejs.org/en/) (versão 16 ou superior)
-* [Go](https://go.dev/dl/) (apenas para rodar o scraper)
-* Aplicativo **Expo Go** no celular ou emulador Android/iOS.
+* Aplicativo **Expo Go** no celular ou emulador Android (Android Studio).
 
 ---
 
