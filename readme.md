@@ -58,6 +58,29 @@ Antes de começar, você precisará ter instalado em sua máquina:
 
 ---
 
+## 🔐 Configuração das Variáveis de Ambiente
+
+Este projeto utiliza chaves de API sensíveis (Firebase e Google Maps) que não são versionadas no repositório por questões de segurança. Para executar o projeto localmente, você precisará configurar um arquivo .env 
+
+### Passo a Passo:
+#### 1. Na raiz do projeto, crie um arquivo chamado .env.
+#### 2. Copie o conteúdo abaixo e cole dentro deste arquivo.
+#### 3. Substitua os valores sua_chave_aqui pelas credenciais do seu projeto no Firebase Console e Google Cloud Console.
+
+```bash
+# Configurações do Firebase
+EXPO_PUBLIC_FIREBASE_API_KEY=sua_api_key_do_firebase
+EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN=seu-projeto.firebaseapp.com
+EXPO_PUBLIC_FIREBASE_PROJECT_ID=id-do-seu-projeto
+EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET=seu-projeto.appspot.com
+EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=seu_sender_id
+EXPO_PUBLIC_FIREBASE_APP_ID=seu_app_id
+
+# Configuração do Google Maps
+EXPO_PUBLIC_GOOGLE_MAPS_API_KEY=sua_chave_api_google_maps
+```
+---
+
 ## 🔧 Instalação e Execução
 
 ### 1. Clonar o Repositório
