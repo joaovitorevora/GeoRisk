@@ -28,12 +28,6 @@ O sistema utiliza um algoritmo geométrico para analisar rotas sugeridas e alert
 * **Modo Waze (3D):** Navegação com câmera inclinada seguindo a bússola do dispositivo.
 * **Painel Administrativo:** Moderação de denúncias (Aprovar/Rejeitar) integrada ao app.
 
-### 🕷️ Web Scraper (Golang)
-* **Coleta Automatizada:** Robô que lê portais de notícias locais (ex: Gazeta de Limeira).
-* **NLP Simples:** Classificação automática do tipo de crime baseada em palavras-chave.
-* **Geocodificação:** Conversão de endereços textuais em coordenadas (Lat/Long) via API Nominatim.
-* **Integração Firebase:** Inserção automática de novas zonas de risco no banco de dados.
-
 ---
 
 ## 🛠️ Tecnologias Utilizadas
