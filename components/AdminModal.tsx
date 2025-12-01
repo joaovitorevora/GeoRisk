@@ -54,10 +54,10 @@ const AdminModal: React.FC<AdminModalProps> = ({ visible, onClose }) => {
 
   const handleApprove = async (report: any) => {
     try {
-      // 1. Atualiza o status da denúncia original para "approved"
+      // Atualiza o status da denúncia original para "approved"
       await updateDoc(doc(firestore, "reports", report.id), { status: "approved" });
       
-      // 2. Cria a nova zona de risco pública na coleção 'risk_zones'
+      // Cria a nova zona de risco pública na coleção 'risk_zones'
       await addDoc(collection(firestore, "risk_zones"), {
         latitude: report.location.latitude,
         longitude: report.location.longitude,
@@ -72,13 +72,13 @@ const AdminModal: React.FC<AdminModalProps> = ({ visible, onClose }) => {
     }
   };
 
-  // MUDANÇA 2: Lógica da função handleReject alterada
+  // Lógica da função handleReject alterada
   const handleReject = async (reportId: string) => {
     try {
       // Ação principal: Exclui o documento da coleção "reports"
       await deleteDoc(doc(firestore, "reports", reportId));
       
-      // MUDANÇA 3: Mensagem de sucesso atualizada
+      //Mensagem de sucesso atualizada
       Alert.alert("Sucesso", "Denúncia removida com sucesso.");
     } catch (e) {
       console.error("Erro ao remover denúncia:", e);
